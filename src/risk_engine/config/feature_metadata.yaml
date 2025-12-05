@@ -1,0 +1,4 @@
+avg_monthly_total: TotalCharges / tenure
+has_fiber: Fiber-optic internet flag
+is_month_to_month: Binary flag for contract risk
+tenure_bucket: Categorized tenure in 5 risk groups

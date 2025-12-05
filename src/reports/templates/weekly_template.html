@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kaizar Weekly Churn Report - {{ week_label }}</title>
+    <style>
+    @page {
+        size: A4;
+        margin: 2cm;
+    }
+
+    body {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 11px;
+        color: #F4F4F6;
+        background: #050308;
+    }
+
+    h1, h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+    }
+
+    h1 {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+
+    h2 {
+        font-size: 13px;
+        margin-top: 16px;
+        margin-bottom: 6px;
+    }
+
+    .header-bar {
+        background: radial-gradient(circle at left, #E94560, #050308 60%);
+        padding: 12px 16px;
+        border-radius: 14px;
+        margin-bottom: 16px;
+    }
+
+    .header-bar h1 {
+        margin: 0;
+        color: #FFFFFF;
+    }
+
+    body {
+        background-color: #050308;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border: 1px solid #2A1B28;
+        padding: 5px 7px;
+    }
+
+    th {
+        background: #120B14;
+        color: #F4F4F6;
+    }
+
+    tr:nth-child(even) {
+        background: #09060C;
+    }
+
+    tr:nth-child(odd) {
+        background: #07040A;
+    }
+
+    .kpi-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+    }
+
+    .kpi-card {
+        flex: 1;
+        background: #120B14;
+        border-radius: 12px;
+        padding: 8px 10px;
+        border: 1px solid rgba(233, 69, 96, 0.25);
+    }
+
+    .kpi-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        opacity: 0.7;
+    }
+
+    .kpi-value {
+        font-size: 12px;
+        margin-top: 4px;
+    }
+    </style>
+
+</head>
+<body>
+    <div class="header-bar">
+    <h1>Kaizar Risk &amp; Retention — Weekly Churn Report</h1>
+    <p>Week: {{ week_label }}</p>
+    </div>
+  <h2>1. Overall metrics</h2>
+  <ul>
+    <li>Average churn probability: {{ overall.avg_proba | round(3) }}</li>
+    <li>Expected monthly revenue at risk: €{{ overall.revenue_at_risk_month | round(2) }}</li>
+    <li>Expected total loss (horizon): €{{ overall.expected_loss_total | round(2) }}</li>
+  </ul>
+
+  <h2>2. Top risk segments</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Contract</th>
+        <th>Tenure bucket</th>
+        <th>Customers</th>
+        <th>Avg proba</th>
+        <th>Expected loss</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in segments %}
+      <tr>
+        <td>{{ row.Contract }}</td>
+        <td>{{ row.tenure_bucket }}</td>
+        <td>{{ row.n_customers }}</td>
+        <td>{{ row.avg_proba | round(3) }}</td>
+        <td>€{{ row.total_expected_loss | round(2) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>3. Top 10 high-risk customers (by impact)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>MonthlyCharges</th>
+        <th>Churn proba</th>
+        <th>Expected loss</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in top_customers %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>€{{ row.MonthlyCharges | round(2) }}</td>
+        <td>{{ row.churn_proba | round(3) }}</td>
+        <td>€{{ row.expected_loss | round(2) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</body>
+</html>

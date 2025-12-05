@@ -1,0 +1,10 @@
+model_path: "src/models/model.pkl"
+impact:
+  default_horizon_months: 12
+  
+reports:
+  output_dir: "src/reports/generated"
+
+thresholds:
+  high_risk: 0.6
+  medium_risk: 0.3

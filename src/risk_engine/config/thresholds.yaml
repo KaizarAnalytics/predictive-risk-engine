@@ -1,0 +1,4 @@
+risk_levels:
+  high: 0.6
+  medium: 0.3
+  low: 0.0
