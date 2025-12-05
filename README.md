@@ -3,7 +3,8 @@
 A modular, production-style churn risk engine focused on clean ML architecture, explainability, and automated reporting.  
 This open-core version contains the full modeling pipeline used by Kaizar, while the production API and dashboard remain proprietary.
 
-See https://kaizar.nl/posts/post.html?slug=predictive-risk for full product description.
+Full case description available at:
+https://kaizar.nl/posts/post.html?slug=predictive-risk
 
 ---
 
