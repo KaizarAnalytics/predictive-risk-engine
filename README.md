@@ -3,6 +3,8 @@
 A modular, production-style churn risk engine focused on clean ML architecture, explainability, and automated reporting.  
 This open-core version contains the full modeling pipeline used by Kaizar, while the production API and dashboard remain proprietary.
 
+See https://kaizar.nl/posts/post.html?slug=predictive-risk for full product description.
+
 ---
 
 ## Features
@@ -67,6 +69,17 @@ python -m src.reports.generate_weekly_report
 from src.models.train_model import get_model
 model = get_model()
 ```
+
+---
+
+## Example impact (demo configuration)
+
+Using the Telco Customer Churn dataset and the default configuration in this repo:
+- The top 20% highest-risk customers capture ~67% of all churn events.
+- Targeting retention actions at this segment makes interventions ≈3× more effective than contacting customers at random.
+- SHAP-based explanations provide per-customer driver breakdowns (e.g. contract type, tenure, charges), making the scores usable for operations and CX teams instead of just data scientists.
+
+These numbers are indicative for the demo setup and will vary when you plug in your own data and thresholds.
 
 ---
 
