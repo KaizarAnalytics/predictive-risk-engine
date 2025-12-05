@@ -8,6 +8,17 @@ https://kaizar.nl/posts/post.html?slug=predictive-risk
 
 ---
 
+## Example impact (demo configuration)
+
+Using the Telco Customer Churn dataset and the default configuration in thi>
+- The top 20% highest-risk customers capture ~67% of all churn events.
+- Targeting retention actions at this segment makes interventions ≈3× more >
+- SHAP-based explanations provide per-customer driver breakdowns (e.g. cont>
+
+These numbers are indicative for the demo setup and will vary when you plug>
+
+---
+
 ## Features
 
 - **Data preprocessing & feature engineering**
@@ -70,17 +81,6 @@ python -m src.reports.generate_weekly_report
 from src.models.train_model import get_model
 model = get_model()
 ```
-
----
-
-## Example impact (demo configuration)
-
-Using the Telco Customer Churn dataset and the default configuration in this repo:
-- The top 20% highest-risk customers capture ~67% of all churn events.
-- Targeting retention actions at this segment makes interventions ≈3× more effective than contacting customers at random.
-- SHAP-based explanations provide per-customer driver breakdowns (e.g. contract type, tenure, charges), making the scores usable for operations and CX teams instead of just data scientists.
-
-These numbers are indicative for the demo setup and will vary when you plug in your own data and thresholds.
 
 ---
 
