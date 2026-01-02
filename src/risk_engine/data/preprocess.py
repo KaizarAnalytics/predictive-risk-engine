@@ -63,7 +63,7 @@ def build_preprocessor(X: pd.DataFrame) -> ColumnTransformer:
                             ("scaler", StandardScaler())
                         ])
     categorical_transformer = Pipeline(steps=[
-                            ("imputer", SimpleImputer(strategy="most_frequent")),   # vult NaN met modus
+                            ("imputer", SimpleImputer(strategy="most_frequent")),   # fills NaN with mode
                             ("onehot", OneHotEncoder(handle_unknown="ignore"))
                         ])
 

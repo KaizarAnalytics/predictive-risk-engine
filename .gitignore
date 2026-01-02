@@ -1,7 +1,50 @@
+# Virtual environments
 .venv/
+venv/
+env/
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# IDE
 .vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
 .ipynb_checkpoints/
-*.pyc
+
+# Data (downloaded via kagglehub)
+data/raw/
+
+# Models (generated)
+# Uncomment if you don't want to track the model
+# src/models/model.pkl
+# src/risk_engine/models/model.pkl
+
+# Reports (generated)
+src/reports/generated/
+src/risk_engine/reports/generated/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Misc
+*.log
 notebooks-kaggle/
-EOF

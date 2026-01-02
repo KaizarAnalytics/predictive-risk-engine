@@ -1,8 +1,13 @@
 import pandas as pd
 
+
 def add_tenure_buckets(df: pd.DataFrame) -> pd.DataFrame:
     if "tenure" not in df.columns:
         return df
+
+    # Ensure tenure is numeric
+    if not pd.api.types.is_numeric_dtype(df["tenure"]):
+        df["tenure"] = pd.to_numeric(df["tenure"], errors="coerce")
 
     df = df.copy()
     df["tenure_bucket"] = pd.cut(
@@ -22,7 +27,7 @@ def add_charge_ratios(df: pd.DataFrame) -> pd.DataFrame:
 
 def add_binary_flags(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    # Voorbeeld flags – pas aan naar smaak
+    # Example flags - adjust as needed
     if "Contract" in df.columns:
         df["is_month_to_month"] = (df["Contract"] == "Month-to-month").astype(int)
     if "InternetService" in df.columns:
@@ -35,6 +40,12 @@ def add_binary_flags(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def apply_feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
+    # Ensure numeric columns are properly typed
+    numeric_cols = ["TotalCharges", "MonthlyCharges", "tenure", "SeniorCitizen"]
+    for col in numeric_cols:
+        if col in df.columns and not pd.api.types.is_numeric_dtype(df[col]):
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
     df = add_tenure_buckets(df)
     df = add_charge_ratios(df)
     df = add_binary_flags(df)

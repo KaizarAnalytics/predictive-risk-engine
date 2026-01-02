@@ -32,7 +32,7 @@ def test_apply_feature_engineering_adds_expected_columns():
     ]
 
     for col in expected_cols:
-        assert col in out.columns, f"Feature engineering mist kolom: {col}"
+        assert col in out.columns, f"Feature engineering missing column: {col}"
 
 
 def test_apply_feature_engineering_does_not_modify_input_inplace():
